@@ -1,5 +1,7 @@
 package com.project.parkingcontrol.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,8 @@ public class ParkingSpotService {
 	}
 	
 	// checks if license plate already exists on repository
-	public boolean existsByLicensePlate(String licensePlateCar) {
-		return parkingSpotRepository.existsByLicensePlate(licensePlateCar);
+	public boolean existsByParkingSpotLicensePlate(String parkingSpotLicensePlate) {
+		return parkingSpotRepository.existsByParkingSpotLicensePlate(parkingSpotLicensePlate);
 	}
 	
 	// checks if parking spot number is already on repository
@@ -36,4 +38,8 @@ public class ParkingSpotService {
 		return parkingSpotRepository.existsByApartmentAndBlock(apartment, block);
 	}
 	
+	// finds all registered parking spots
+	public List<ParkingSpotModel> findAll(){
+		return parkingSpotRepository.findAll();
+	}
 }
