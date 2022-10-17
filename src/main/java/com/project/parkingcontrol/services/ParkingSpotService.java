@@ -4,18 +4,19 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.parkingcontrol.dtos.ParkingSpotDto;
 import com.project.parkingcontrol.models.ParkingSpotModel;
 import com.project.parkingcontrol.repositories.ParkingSpotRepository;
 
 @Service
 public class ParkingSpotService {
 
-	@Autowired
-	ParkingSpotRepository parkingSpotRepository;
+	final ParkingSpotRepository parkingSpotRepository;
+
+    public ParkingSpotService(ParkingSpotRepository parkingSpotRepository) {
+        this.parkingSpotRepository = parkingSpotRepository;
+    }
 	
 	// saves on repository
 	@Transactional

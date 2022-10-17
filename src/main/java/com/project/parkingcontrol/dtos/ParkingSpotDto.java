@@ -1,11 +1,12 @@
 package com.project.parkingcontrol.dtos;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ParkingSpotDto {
 
-	@NotBlank
+	@NotNull
     private int parkingSpotNumber;
     @NotBlank
     @Size(max = 9)
@@ -17,8 +18,8 @@ public class ParkingSpotDto {
 	@NotBlank
 	private String colorCar;
 	@NotBlank
-	private String OwnerName;
-	@NotBlank
+	private String ownerName;
+	@NotNull
 	private int apartment;
 	@NotBlank
 	private String block;
@@ -64,11 +65,11 @@ public class ParkingSpotDto {
 	}
 
 	public String getOwnerName() {
-		return OwnerName;
+		return ownerName;
 	}
 
 	public void setOwnerName(String ownerName) {
-		OwnerName = ownerName;
+		this.ownerName = ownerName;
 	}
 
 	public int getApartment() {
