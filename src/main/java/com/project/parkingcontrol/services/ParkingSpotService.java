@@ -1,6 +1,8 @@
 package com.project.parkingcontrol.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -42,5 +44,10 @@ public class ParkingSpotService {
 	// finds all registered parking spots
 	public List<ParkingSpotModel> findAll(){
 		return parkingSpotRepository.findAll();
+	}
+	
+	//find parking spot by id
+	public Optional<ParkingSpotModel> findById(UUID id){
+		return parkingSpotRepository.findById(id);
 	}
 }

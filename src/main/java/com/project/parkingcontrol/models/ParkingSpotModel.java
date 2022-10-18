@@ -20,6 +20,7 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
+	// change to String
 	@Column(nullable = false, unique = true, length = 5)
 	private int parkingSpotNumber;
 	
