@@ -46,12 +46,13 @@ public class ParkingSpotService {
 		return parkingSpotRepository.findAll();
 	}
 	
-	//find parking spot by id
+	//finds parking spot by id
 	public Optional<ParkingSpotModel> findById(UUID id){
 		return parkingSpotRepository.findById(id);
 	}
 
 	// deletes parking spot
+	@Transactional
 	public void delete(ParkingSpotModel parkingSpotModel) {
 		parkingSpotRepository.delete(parkingSpotModel);
 	
