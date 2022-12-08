@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfigV2 {
 
 	@Bean
@@ -17,9 +18,9 @@ public class WebSecurityConfigV2 {
 		
 		http.httpBasic().and()
 		         .authorizeHttpRequests()
-				.antMatchers(HttpMethod.GET, "/parking-spot/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/parking-spot").hasRole("USER")
-				.antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")
+	//			.antMatchers(HttpMethod.GET, "/parking-spot/**").permitAll()
+	//			.antMatchers(HttpMethod.POST, "/parking-spot").hasRole("USER")
+	//			.antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")
 				.anyRequest().authenticated().and()
 				.csrf().disable();
 

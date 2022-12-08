@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class ParkingSpotController {
 	}
 
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping
 	public ResponseEntity<Object> saveParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto) {
 		//checks if already exists 
@@ -61,6 +63,7 @@ public class ParkingSpotController {
 	}
 	
 	// gets all parking spots registered
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', ROLE_USER)")
 	@GetMapping
 	public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots(){
 		List<ParkingSpotModel> list = parkingSpotService.findAll();
@@ -68,6 +71,7 @@ public class ParkingSpotController {
 	}
 	
 	// get parking spot by id
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', ROLE_USER)")
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneParkingSpot(@PathVariable("id") UUID id){
 		Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findById(id);
@@ -79,6 +83,7 @@ public class ParkingSpotController {
 	}
 	
 	//updates parking spot
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updatesParkingSpot(@PathVariable("id") UUID id,
 			@RequestBody ParkingSpotDto parkingSpotDto){
@@ -96,6 +101,7 @@ public class ParkingSpotController {
 	
 	
 	//delete parking spot
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteParkingSpot(@PathVariable("id") UUID id) {
 		Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findById(id);
